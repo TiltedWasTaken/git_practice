@@ -6,7 +6,8 @@ class TicTacToe:
         self.player = player    
     def __repr__(self):
         return self.player
-        
+    win = False
+    draw = False    
     #Board Method
     def board(self, move = ""):
 
@@ -31,6 +32,15 @@ class TicTacToe:
     def move(self, move):
         self.board(move)
 
+    def check_draw(self):
+        blank_count = 0
+        values = TicTacToe.board_move.values()
+        for value in values:
+            if value != " X" and value != " O":
+                blank_count += 1
+        if blank_count == 0 and TicTacToe.win == False:
+            TicTacToe.draw = True
+            print("The game has finished as a draw.")
         
 player_one = TicTacToe("Player_One")
 player_two = TicTacToe("Player_Two")
@@ -38,3 +48,11 @@ player_two = TicTacToe("Player_Two")
 player_one.move("a2")
 player_one.move("a1")
 player_one.move("a3")
+player_one.move("b1")
+player_one.move("b2")
+player_one.move("b3")
+player_one.move("c1")
+player_one.move("c2")
+player_one.move("c3")
+
+player_one.check_draw()
