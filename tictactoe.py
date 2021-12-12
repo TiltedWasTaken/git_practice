@@ -14,12 +14,28 @@ class TicTacToe:
     winner = ""    
     #Board Method
     def board(self, move = ""):
+        
+        if move in TicTacToe.board_move:
+            
+            if move != "" and TicTacToe.board_move[move] == " X":
+                print("Invalid move, tile already taken")
+                print("Try again")
+                self.board(input())
+            elif move != "" and TicTacToe.board_move[move] == " O":
+                print("Invalid move, tile already")
+                print("Try again")
+                self.board(input())
+            elif move != "" and self.player == "Player_One":
+                TicTacToe.board_move[move] = " X"
+            elif move != "" and self.player == "Player_Two":
+                TicTacToe.board_move[move] = " O"
+        else:
+            print("Invalid input")
+            print("Try again")
+            self.board(input())
 
-
-        if move != "" and self.player == "Player_One":
-            TicTacToe.board_move[move] = " X"
-        if move != "" and self.player == "Player_Two":
-            TicTacToe.board_move[move] = " O"
+        
+        
             
         print("\n")
         print("   |   |   \n")
@@ -87,13 +103,23 @@ class TicTacToe:
 player_one = TicTacToe("Player_One")
 player_two = TicTacToe("Player_Two")
 
+print("   |   |   \n")
+print("" + TicTacToe.board_move["a1"] + " |" + TicTacToe.board_move["a2"] + " |" + TicTacToe.board_move["a3"] + " \n")
+print("_ _|_ _|_ _\n")
+print("   |   |   \n")
+print("" + TicTacToe.board_move["b1"] + " |" + TicTacToe.board_move["b2"] + " |" + TicTacToe.board_move["b3"] + " \n")
+print("_ _|_ _|_ _\n")
+print("   |   |   \n")
+print("" + TicTacToe.board_move["c1"] + " |" + TicTacToe.board_move["c2"] + " |" + TicTacToe.board_move["c3"] + " \n")
+print("   |   |   \n")
+print("\n")
+
 move = 0
 
 print("Welcome to TicTaceToe!")
 print("Player One is X")
 print("Player Two is O")
 print("Player One, make your move!")
-player_one.board()
 
 while move < 10:
     player_one_move = input()
