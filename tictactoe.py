@@ -1,3 +1,6 @@
+from os import times
+
+
 class TicTacToe:
     #Class variables:
     board_move = {"a1": "a1", "a2": "a2", "a3": "a3", "b1": "b1", 
@@ -64,12 +67,10 @@ class TicTacToe:
             TicTacToe.win = True
         if win_con_7 == player_one_win or win_con_7 == player_two_win:
             TicTacToe.winner = self.player
-            TicTacToe.wini = True
+            TicTacToe.win = True
         if win_con_8 == player_one_win or win_con_8 == player_two_win:
             TicTacToe.winner = self.player
-            TicTacToe.win = True   
-        if TicTacToe.winner != "" and TicTacToe.win == True:
-            print(TicTacToe.winner + " wins. \n" + "Game Over!\n")
+            TicTacToe.win = True  
 
         
 
@@ -81,13 +82,43 @@ class TicTacToe:
                 blank_count += 1
         if blank_count == 0 and TicTacToe.win == False:
             TicTacToe.draw = True
-            print("The game has finished as a draw.")
+
         
 player_one = TicTacToe("Player_One")
 player_two = TicTacToe("Player_Two")
 
-player_one.move("b1")
-player_one.move("b2")
-player_one.move("b3")
-player_one.check_win()
+move = 0
+
+print("Welcome to TicTaceToe!")
+print("Player One is X")
+print("Player Two is O")
+print("Player One, make your move!")
+player_one.board()
+
+while move < 10:
+    player_one_move = input()
+    player_one.board(player_one_move)
+    player_one.check_win()
+    player_one.check_draw()
+    if TicTacToe.win == True:
+        print("Game Over!")
+        print(TicTacToe.winner + " is the winner!")
+    if TicTacToe.draw == True:
+        print("Game Over!")
+        print("It's a draw!")
+    move += 1
+    player_two_move = input()
+    player_two.board(player_two_move)
+    player_two.check_win()
+    player_two.check_draw()
+    if TicTacToe.win == True:
+        print("Game Over!")
+        print(TicTacToe.winner + " is the winner!")
+    if TicTacToe.draw == True:
+        print("Game Over!")
+        print("It's a draw!")
+    move += 1
+
+
+
 
